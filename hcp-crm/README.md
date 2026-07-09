@@ -1,5 +1,7 @@
 # AI-First CRM — HCP Interaction Module
 
+![AI-First CRM Dashboard](assets/dashboard-screenshot.png)
+
 An AI-first CRM screen for pharmaceutical field reps. The rep never fills the
 structured form by hand — they describe the visit (or a correction to it) in
 plain English to the **AI Assistant**, and a **LangGraph agent** backed by
@@ -19,7 +21,7 @@ data, and writes it straight into the form on the left.
         Topics, Follow-up date, AI Summary, Key Points...
 ```
 
-## Screenshot reference
+## Screenshot referencea
 
 The layout mirrors the provided mock: a two-column "Log HCP Interaction"
 screen — structured form on the left, ChatGPT-style AI Assistant on the
@@ -136,27 +138,4 @@ Assistant on the right.
 |---|---|---|
 | `VITE_API_BASE_URL` | Base URL of the FastAPI backend | `http://localhost:8000` |
 
-## Try it (mirrors the video walkthrough)
 
-1. **Log**: *"Met Dr. Sharma today. Discussed our diabetes medication. He
-   requested additional clinical studies and asked for a follow-up meeting
-   next Tuesday."* → `log_interaction` fires, form fills in (name, date,
-   topics, follow-up date, AI summary/insights).
-2. **Edit**: *"Sorry, the name was actually Dr. John, and the sentiment was
-   negative."* → `edit_interaction` fires, only `hcpName` and `sentiment`
-   flash-update, everything else stays.
-3. **History**: *"Show my recent interactions with Dr. John"* →
-   `view_interaction_history` fires, results come back in the chat.
-4. **Next steps**: *"What should I do next?"* → `generate_followup_suggestions`.
-5. **Schedule**: *"Set up a follow-up visit for next Tuesday about the
-   clinical studies"* → `schedule_followup_visit`.
-
-## Notes on scope
-
-- Authentication is intentionally omitted (per the assignment's acceptance
-  criteria). A `session_id` is generated client-side and stored in
-  `localStorage` purely so the agent knows which interaction "the most
-  recent one" refers to within a conversation.
-- RAG is intentionally omitted (not required).
-- `Base.metadata.create_all()` handles schema creation for this assignment's
-  scope; swap in Alembic migrations for a production setup.
